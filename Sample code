@@ -1,0 +1,32 @@
+# after instlling Selenium and a webdriver to your programming environment, you will need to specify the webdriver version depending on the browser you are operating from. make sure the browser version matches the webdriver version downloaded. for example, if you used Firefox you will want to enter firefox/Firefox into anywhere you see chrome/Chrome
+
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
+
+# this bit of code is here so the web browser does not automatically close after the code runs
+options = webdriver.ChromeOptions()
+options.add_experimental_option("detach", True)
+
+def startBot(username, password, url):
+
+    # this line of code services the full path to the webdriver. make note of it on download.
+    s = Service("/full/path/to/webdriver")
+
+    # this states the driver used and path
+    driver = webdriver.Chrome(service=s, options=options)
+
+    # this is the specified url below
+    driver.get(url)
+
+   # The following lines of code are found by right clicking the field and inspecting the element
+    driver.find_element(by=By.NAME, value="username/email").send_keys(username)
+
+    driver.find_element(by=By.NAME, value="password").send_keys(password)
+
+    driver.find_element(by=By.XPATH, value="enter full xpath").click()
+
+username = "your username"
+password = "your password!"
+
+url = "chosen url login page"
