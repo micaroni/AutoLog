@@ -1,0 +1,4 @@
+import keyring
+
+# keyring.set_password("system", "username/email", "secret_password")
+keyring.get_password("system", "username/email")
