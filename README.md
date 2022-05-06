@@ -1,5 +1,5 @@
 # AutoLog
-This project uses Selenium, WebDriver, and keyring to automate site logins via Python.
+This project uses Selenium, WebDriver, and Keyring to automate site logins via Python.
 
 ## Selenium
 Selenium is a tool for API that can work alongside many other tools for the automation of web browsers.
