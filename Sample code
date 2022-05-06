@@ -3,6 +3,8 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
+import keyring
+# (https://github.com/philipn/python-keyring-lib#integrate-the-keyring-lib-with-your-application); keychain stores passwords in the OS without displaying them as plaintext in the code: keyring.set_password("system", "username", "password"), click run and then delete the line of code.
 
 # this bit of code is here so the web browser does not automatically close after the code runs
 options = webdriver.ChromeOptions()
@@ -19,14 +21,18 @@ def startBot(username, password, url):
     # this is the specified url below
     driver.get(url)
 
-   # The following lines of code are found by right clicking the field and inspecting the element
+    # the following lines of code are found by right clicking the field and inspecting the element
     driver.find_element(by=By.NAME, value="username/email").send_keys(username)
 
     driver.find_element(by=By.NAME, value="password").send_keys(password)
 
     driver.find_element(by=By.XPATH, value="enter full xpath").click()
 
-username = "your username"
-password = "your password!"
+# the usernama will be entered in the console. it is not case sensitive, but make sure it matches that of the keychain input.
+# keyring.get_password will pull the password from the chain stored in the OS
+username = str(input("What is your username for [url]?")).lower()
+password = keyring.get_password("system", username)
 
 url = "chosen url login page"
+
+startBot(username, password, url)
